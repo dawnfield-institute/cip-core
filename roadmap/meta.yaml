@@ -1,0 +1,15 @@
+schema_version: '2.0'
+directory_name: roadmap
+description: The roadmap directory contains files related to a roadmap or a plan for
+  the future. It includes a README file that serves as an introduction and overview
+  of the project, as well as other files such as a cip_protocol_roadmap.md file that
+  provides more detailed information about the roadmap.
+semantic_scope:
+- roadmap
+- planning
+- project management
+files:
+- cip_protocol_roadmap.md
+- README.md
+- roadmap_draft_imported.md
+child_directories: []

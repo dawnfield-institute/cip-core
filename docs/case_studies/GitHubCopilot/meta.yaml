@@ -1,0 +1,26 @@
+schema_version: '2.0'
+directory_name: GitHubCopilot
+description: This directory contains case studies and experimental results documenting
+  the use of AI models, particularly GitHub Copilot, in a scientific computing context.
+  The specific files included in this directory are Markdown documents and YAML configuration
+  files, which provide details about the experimentation and testing that took place
+  with these AI models.
+semantic_scope:
+- case studies
+- experimental results
+- reproducible research
+- artificial intelligence
+- github copilot
+- dawn field theory
+- cognition index protocol
+- scientific computing
+- protocol development
+- technical specifications
+- architectures
+- real-world integrations
+- ai assistant
+- openai models
+- claude model variants.
+files:
+- copilot_case_study.md
+child_directories: []

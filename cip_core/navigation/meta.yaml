@@ -1,0 +1,15 @@
+schema_version: '2.0'
+directory_name: navigation
+description: The navigation directory provides repository navigation and cross-repository
+  content resolution using the repo:// URL scheme. It implements the CIP specification
+  for multi-repository navigation and content discovery.
+semantic_scope:
+- repository
+- content
+- resolution
+- url
+- cip.
+files:
+- __init__.py
+child_directories:
+- __pycache__

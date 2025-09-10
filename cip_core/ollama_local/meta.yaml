@@ -1,0 +1,13 @@
+schema_version: '2.0'
+directory_name: ollama_local
+description: This directory contains local Ollama integration for AI-enhanced CIP
+  metadata generation. It provides functionality for implementing and testing the
+  VM service for cloud-based AI processing and analysis jobs.
+semantic_scope:
+- implementation
+- functionality
+- ai/ml
+files:
+- __init__.py
+child_directories:
+- __pycache__

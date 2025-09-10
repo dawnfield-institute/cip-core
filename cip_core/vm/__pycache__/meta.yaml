@@ -1,0 +1,12 @@
+schema_version: '2.0'
+directory_name: __pycache__
+description: The __pycache__ directory contains cached Python bytecode and metadata
+  files for the cip_core package's vm module.
+semantic_scope:
+- python package
+- file types and their purpose
+- directory naming conventions
+- notable files that indicate purpose.
+files:
+- __init__.cpython-311.pyc
+child_directories: []

@@ -1,0 +1,2 @@
+[console_scripts]
+cip = cip_core.cli.main:cli

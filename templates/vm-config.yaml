@@ -1,0 +1,39 @@
+# CIP VM Service Configuration Template
+# Copy this to .cip/vm-config.yaml and customize for your setup
+
+endpoint: "http://your-vm-ip:8000"  # Your CIP VM service endpoint
+api_key: "your-api-key-here"        # Optional API key for authentication
+timeout: 300                        # Timeout in seconds for API calls
+
+# Available Ollama models on your VM
+ollama_models:
+  - "llama3.1"
+  - "codellama"
+  - "mistral"
+  - "phi3"
+  - "deepseek-coder"
+
+# VM Resource Configuration (informational)
+vm_specs:
+  cpu_cores: 8
+  ram_gb: 32
+  gpu: "NVIDIA RTX 4090"
+  storage_gb: 500
+
+# Analysis Settings
+analysis_defaults:
+  scrutiny:
+    depth: "comprehensive"
+    include_cross_repo: true
+    generate_insights: true
+  
+  metadata_update:
+    analyze_code_semantics: true
+    generate_descriptions: true
+    update_complexity_scores: true
+    auto_commit: false
+  
+  comprehension_benchmark:
+    question_count: 50
+    test_cross_repo: true
+    save_baseline: true

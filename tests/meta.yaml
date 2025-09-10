@@ -1,0 +1,12 @@
+schema_version: '2.0'
+directory_name: tests
+description: The "tests" directory is a collection of test cases for the Python package.
+  It contains a file called "meta.yaml" that contains metadata about the tests, and
+  a file called "test_basic.py" that contains actual test code.
+semantic_scope:
+- testing
+- software development
+- python
+files:
+- test_basic.py
+child_directories: []

@@ -1,0 +1,23 @@
+schema_version: "2.0"
+repository_role: protocol
+title: "CIP-Core: Cognition Index Protocol Implementation"
+description: "Foundation package for the Cognition Index Protocol, enabling automated validation, scoring, and navigation across distributed repositories"
+version: "0.1.0-dev"
+authors:
+  - "Peter Groom, Dawn Field Institute"
+license: "Under Review"
+ecosystem_links:
+  theory: "repo://dawn-field-theory/foundational/"
+  sdk: "repo://fracton-sdk/"
+  devkit: "repo://dawn-devkit/"
+  models: "repo://dawn-models/"
+tags:
+  - "protocol"
+  - "dawn-field-theory"
+  - "cip"
+  - "automation"
+  - "validation"
+cognition_metrics:
+  complexity_score: 0.7
+  comprehension_baseline: 0.85
+  last_benchmark: "2025-09-10T00:00:00Z"

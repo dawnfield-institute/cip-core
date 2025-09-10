@@ -1,0 +1,117 @@
+Metadata-Version: 2.2
+Name: cip-core
+Version: 0.1.0.dev0
+Summary: Cognition Index Protocol implementation for multi-repository automation
+Home-page: https://github.com/dawnfield-institute/cip-core
+Author: Peter Groom
+Author-email: peter@dawnfield.institute
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: jsonschema>=4.0.0
+Requires-Dist: requests>=2.25.0
+Requires-Dist: pathlib>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Requires-Dist: mypy>=0.800; extra == "dev"
+Requires-Dist: pre-commit>=2.0; extra == "dev"
+Provides-Extra: mcp
+Requires-Dist: mcp>=0.1.0; extra == "mcp"
+Provides-Extra: all
+Requires-Dist: pytest>=6.0; extra == "all"
+Requires-Dist: pytest-cov>=2.0; extra == "all"
+Requires-Dist: black>=21.0; extra == "all"
+Requires-Dist: flake8>=3.8; extra == "all"
+Requires-Dist: mypy>=0.800; extra == "all"
+Requires-Dist: pre-commit>=2.0; extra == "all"
+Requires-Dist: mcp>=0.1.0; extra == "all"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# CIP-Core: Cognition Index Protocol Implementation
+
+**Status:** Private Development Phase  
+**Target:** Foundation for Dawn Field Theory Multi-Repository Ecosystem  
+**Version:** 0.1.0-dev
+
+---
+
+## 🎯 Overview
+
+CIP-Core is the foundational package for the **Cognition Index Protocol (CIP)**, enabling automated validation, scoring, and navigation across distributed repositories in the Dawn Field Theory ecosystem.
+
+### Key Features
+
+- **🔍 Schema Validation**: Validate CIP metadata and file structures
+- **📊 Comprehension Scoring**: Ground truth comparison and AI benchmarking
+- **🗺️ Multi-Repository Navigation**: Seamless cross-repo content discovery
+- **🤖 Automation-Ready**: CI/CD integration and agent workflows
+- **🔧 Developer Tools**: CLI and Python API for manual and automated use
+
+## 🚀 Quick Start
+
+```bash
+# Install from source (development)
+pip install -e .
+
+# Initialize a repository with CIP metadata
+cip init --type=theory --license=AGPL-3.0
+
+# Validate CIP compliance
+cip validate --path=./
+
+# Run comprehension benchmark
+cip score --system=claude-sonnet --questions=auto
+```
+
+## 📚 Documentation
+
+- [API Reference](docs/api/)
+- [Usage Guides](docs/guides/)
+- [Integration Examples](docs/examples/)
+- [CIP 2.0 Specification](spec/CIP_2.0_specification.md)
+
+## 🏗️ Architecture
+
+```
+cip-core/
+├── cip_core/           # Core Python package
+├── reference_clients/  # Example integrations
+├── spec/              # Protocol documentation
+├── tools/             # Standalone utilities
+└── tests/             # Comprehensive test suite
+```
+
+## 🤝 Contributing
+
+This repository is currently in private development. Once stabilized, we'll welcome community contributions following the Dawn Field Theory governance model.
+
+## 📄 License
+
+*License under review - considering MIT or Apache-2.0 for maximum ecosystem compatibility*
+
+---
+
+**Part of the [Dawn Field Theory](https://github.com/dawnfield-institute/dawn-field-theory) ecosystem**

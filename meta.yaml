@@ -1,0 +1,26 @@
+schema_version: '2.0'
+directory_name: ''
+description: This directory structure appears to be the root of a Python package with
+  additional files and subdirectories. The package appears to have a well-defined
+  structure with clear file types and directory naming conventions. The notable files
+  that indicate purpose include the README.md, requirements.txt, and setup.py files.
+semantic_scope:
+- python package
+- development tooling
+- documentation
+- roadmap
+- tests.
+files:
+- CIP_CORE_DESIGN_DOCUMENT.md
+- LICENSE
+- README.md
+- requirements.txt
+- setup.py
+child_directories:
+- cip_core
+- cip_core.egg-info
+- docs
+- roadmap
+- templates
+- tests
+- todo

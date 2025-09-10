@@ -1,0 +1,13 @@
+schema_version: '2.0'
+directory_name: __pycache__
+description: The __pycache__ directory is a cache folder used by the Python interpreter
+  to store compiled versions of Python source code. It contains files that have been
+  compiled from Python source code into bytecode and can be executed directly by the
+  interpreter without the need for compilation.
+semantic_scope:
+- python
+- compiler
+- bytecode
+files:
+- __init__.cpython-311.pyc
+child_directories: []

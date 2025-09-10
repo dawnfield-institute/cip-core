@@ -1,0 +1,14 @@
+schema_version: '2.0'
+directory_name: case_studies
+description: The case_studies directory contains a collection of use cases and case
+  studies related to AI/ML functionality in the software project.
+semantic_scope:
+- ai
+- machine learning
+- natural language processing
+- semantic analysis
+- content analysis.
+files: []
+child_directories:
+- Claude
+- GitHubCopilot

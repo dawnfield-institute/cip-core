@@ -1,0 +1,15 @@
+schema_version: '2.0'
+directory_name: __pycache__
+description: The __pycache__ directory is a cache of Python code objects used by the
+  interpreter to speed up execution. It contains precompiled versions of Python files
+  with the .pyc extension, as well as a meta.yaml file that stores metadata about
+  the package.
+semantic_scope:
+- python package
+- cache
+- code object
+- precompiled
+- metadata
+files:
+- __init__.cpython-311.pyc
+child_directories: []

@@ -1,0 +1,11 @@
+schema_version: '2.0'
+directory_name: technical
+description: This directory contains technical documentation for the CIP-Core package,
+  which provides functionality related to compliance checking and quality validation.
+semantic_scope:
+- ai/ml
+- compliance
+- quality validation
+files:
+- README.md
+child_directories: []

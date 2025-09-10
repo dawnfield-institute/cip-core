@@ -1,0 +1,16 @@
+schema_version: '2.0'
+directory_name: __pycache__
+description: 'The __pycache__ directory is a hidden directory used by the Python interpreter
+  to store compiled bytecode for modules. It typically contains .pyc files that have
+  been compiled from the corresponding .py source files. In this case, there are three
+  files in the directory: meta.yaml, placeholders.cpython-311.pyc, and workflows.cpython-311.pyc.'
+semantic_scope:
+- python package
+- file types
+- directory naming conventions
+- notable files that indicate purpose
+files:
+- __init__.cpython-311.pyc
+- placeholders.cpython-311.pyc
+- workflows.cpython-311.pyc
+child_directories: []

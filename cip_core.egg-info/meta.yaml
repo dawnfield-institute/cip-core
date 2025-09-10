@@ -1,0 +1,17 @@
+schema_version: '2.0'
+directory_name: cip_core.egg-info
+description: The cip_core.egg-info directory contains metadata about the package it
+  is a part of, including dependencies and entry points. It also contains information
+  about the package's version, author, and license.
+semantic_scope:
+- package metadata
+- python package
+- dependency management.
+files:
+- dependency_links.txt
+- entry_points.txt
+- PKG-INFO
+- requires.txt
+- SOURCES.txt
+- top_level.txt
+child_directories: []

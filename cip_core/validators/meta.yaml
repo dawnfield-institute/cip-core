@@ -1,0 +1,16 @@
+schema_version: '2.0'
+directory_name: validators
+description: The validators directory contains code and metadata for a Python package
+  that provides validation functionality. It includes several files that define different
+  types of validators, as well as a meta file that specifies the package's metadata.
+semantic_scope:
+- python-package
+- validation
+- data-validation
+files:
+- __init__.py
+- compliance.py
+- cross_repo.py
+- metadata.py
+child_directories:
+- __pycache__

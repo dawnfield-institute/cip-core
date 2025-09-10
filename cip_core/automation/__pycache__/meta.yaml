@@ -1,0 +1,9 @@
+schema_version: '2.0'
+directory_name: __pycache__
+description: The "__pycache__" directory contains the compiled bytecode of Python
+  modules and the meta data associated with them.
+semantic_scope:
+- __pycache__
+files:
+- __init__.cpython-311.pyc
+child_directories: []

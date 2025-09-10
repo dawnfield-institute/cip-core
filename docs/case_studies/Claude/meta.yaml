@@ -1,0 +1,18 @@
+schema_version: '2.0'
+directory_name: Claude
+description: This directory appears to contain the documentation and experimental
+  results of an Anthropic's AI assistant named Claude and its Sonnet model variants.
+  It includes instructional or procedural documentation in Markdown format, YAML configuration
+  files, and case studies that demonstrate real-world AI integrations and experiments.
+semantic_scope:
+- ai
+- machine learning
+- natural language processing
+- openai
+- anthropic integration
+- cognition index protocol
+- dawn field theory
+files:
+- Claude_Sonnet4_results.md
+- repro_guide.md
+child_directories: []

@@ -1,0 +1,13 @@
+schema_version: '2.0'
+directory_name: __pycache__
+description: The __pycache__ directory is a special directory used by Python to store
+  the compiled bytecode of Python modules. It is typically found within a package's
+  directory and contains the cached version of the module's bytecode, as well as metadata
+  files such as meta.yaml and __init__.cpython-311.pyc.
+semantic_scope:
+- python package
+- cached bytecode
+- meta data
+files:
+- __init__.cpython-311.pyc
+child_directories: []

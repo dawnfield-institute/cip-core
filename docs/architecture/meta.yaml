@@ -1,0 +1,12 @@
+schema_version: '2.0'
+directory_name: architecture
+description: This directory appears to contain technical specifications for architectural
+  protocols and system designs used in reproducible scientific computing and AI-enhanced
+  research. It includes documentation in the form of Markdown files and YAML configuration
+  files, which are likely related to the Dawn Field Theory/Cognition Index Protocol
+  ecosystem.
+semantic_scope:
+- architecture
+files:
+- CIP_architecturev1.md
+child_directories: []

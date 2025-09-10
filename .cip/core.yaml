@@ -1,0 +1,287 @@
+schema_version: '2.0'
+orientation_type: directory_index
+description: Directory-level orientation index for CIP navigation
+generated_date: '2025-09-10'
+primary_directories:
+  .cip:
+    semantic_scope: []
+    file_count: 0
+    schema_version: '2.0'
+  cip_core:
+    semantic_scope:
+    - python package
+    - system administration
+    - automation
+    - workflows.
+    file_count: 3
+    schema_version: '2.0'
+  cip_core\automation:
+    semantic_scope:
+    - automation
+    - python-package
+    - source-code
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\automation\__pycache__:
+    semantic_scope:
+    - __pycache__
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\cli:
+    semantic_scope:
+    - cli
+    file_count: 2
+    schema_version: '2.0'
+  cip_core\cli\__pycache__:
+    semantic_scope:
+    - python package
+    - cli
+    - bytecode cache
+    file_count: 2
+    schema_version: '2.0'
+  cip_core\instructions:
+    semantic_scope:
+    - python
+    - configuration
+    - metadata
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\instructions\__pycache__:
+    semantic_scope:
+    - python package
+    - cache
+    - code object
+    - precompiled
+    - metadata
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\navigation:
+    semantic_scope:
+    - navigation
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\navigation\__pycache__:
+    semantic_scope:
+    - python package
+    - cached bytecode
+    - meta data
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\ollama_local:
+    semantic_scope:
+    - python package
+    - local data management
+    - metadata.
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\ollama_local\__pycache__:
+    semantic_scope:
+    - python
+    - cache
+    - compilation
+    - execution
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\schemas:
+    semantic_scope:
+    - python package
+    - schema definitions
+    - file types
+    - directory naming conventions
+    - notable files.
+    file_count: 4
+    schema_version: '2.0'
+  cip_core\schemas\__pycache__:
+    semantic_scope:
+    - __pycache__
+    file_count: 4
+    schema_version: '2.0'
+  cip_core\utils:
+    semantic_scope:
+    - package
+    - utility functions
+    - dependencies
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\utils\__pycache__:
+    semantic_scope:
+    - python
+    - compiler
+    - bytecode
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\validators:
+    semantic_scope:
+    - python-package
+    - validation
+    - data-validation
+    file_count: 4
+    schema_version: '2.0'
+  cip_core\validators\__pycache__:
+    semantic_scope:
+    - python package
+    - bytecode cache
+    - metadata.
+    file_count: 4
+    schema_version: '2.0'
+  cip_core\vm:
+    semantic_scope:
+    - vm
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\vm\__pycache__:
+    semantic_scope:
+    - python package
+    - file types and their purpose
+    - directory naming conventions
+    - notable files that indicate purpose.
+    file_count: 1
+    schema_version: '2.0'
+  cip_core\__pycache__:
+    semantic_scope:
+    - python package
+    - file types
+    - directory naming conventions
+    - notable files that indicate purpose
+    file_count: 3
+    schema_version: '2.0'
+  cip_core.egg-info:
+    semantic_scope:
+    - package metadata
+    - python package
+    - dependency management.
+    file_count: 6
+    schema_version: '2.0'
+  docs:
+    semantic_scope:
+    - research
+    - scientific computing
+    - ai
+    - reproducibility
+    - protocol development
+    - cognition index protocol.
+    file_count: 1
+    schema_version: '2.0'
+  docs\architecture:
+    semantic_scope:
+    - architecture
+    file_count: 1
+    schema_version: '2.0'
+  docs\case_studies:
+    semantic_scope:
+    - cognition index protocol (cip)
+    - scientific computing
+    - reproducible research
+    - artificial intelligence
+    - machine learning.
+    file_count: 0
+    schema_version: '2.0'
+  docs\case_studies\Claude:
+    semantic_scope:
+    - ai
+    - machine learning
+    - natural language processing
+    - openai
+    - anthropic integration
+    - cognition index protocol
+    - dawn field theory
+    file_count: 2
+    schema_version: '2.0'
+  docs\case_studies\GitHubCopilot:
+    semantic_scope:
+    - case studies
+    - experimental results
+    - reproducible research
+    - artificial intelligence
+    - github copilot
+    - dawn field theory
+    - cognition index protocol
+    - scientific computing
+    - protocol development
+    - technical specifications
+    - architectures
+    - real-world integrations
+    - ai assistant
+    - openai models
+    - claude model variants.
+    file_count: 1
+    schema_version: '2.0'
+  docs\gpt:
+    semantic_scope:
+    - gpt language model
+    - openai models
+    - ai integration
+    - reproducible research
+    - scientific computing
+    - protocol development.
+    file_count: 7
+    schema_version: '2.0'
+  docs\limitations:
+    semantic_scope:
+    - ai-enhanced scientific computing
+    - cognition index protocol
+    - dawn field theory
+    - openai
+    - anthropic's ai assistant
+    - gpt
+    - sonnet variants
+    - technical specifications
+    - protocol development
+    - research documentation
+    - reproducible scientific computing.
+    file_count: 1
+    schema_version: '2.0'
+  docs\technical:
+    semantic_scope:
+    - cognition index protocol
+    - dawn field theory
+    - scientific computing
+    - reproducible research
+    - ai-enhanced research
+    file_count: 1
+    schema_version: '2.0'
+  roadmap:
+    semantic_scope:
+    - roadmap
+    - planning
+    - project management
+    file_count: 3
+    schema_version: '2.0'
+  templates:
+    semantic_scope:
+    - virtual machine
+    - cloud computing
+    - configuration file
+    - template
+    file_count: 1
+    schema_version: '2.0'
+  tests:
+    semantic_scope:
+    - testing
+    - software development
+    - python
+    file_count: 1
+    schema_version: '2.0'
+  todo:
+    semantic_scope:
+    - todo
+    file_count: 2
+    schema_version: '2.0'
+document_categories:
+  theory: []
+  experiments:
+  - cip_core\validators
+  - tests
+  blueprints:
+  - docs\architecture
+  tools:
+  - cip_core
+  - cip_core\automation
+  documentation:
+  - .
+navigation_hints:
+  foundational_theory: foundational/
+  experiments: experiments/ and blueprints/
+  tools_utilities: tools/ and devkit/
+  protocol_specs: cognition_index_protocol/
+  development: sdk/ and models/

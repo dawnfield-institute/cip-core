@@ -1,0 +1,14 @@
+schema_version: '2.0'
+directory_name: instructions
+description: This directory provides implementation and utility code for generating
+  AI-readable instructions and guidance files following the Cognition Index Protocol
+  specifications.
+semantic_scope:
+- functionality
+- key_classes_functions
+- dependencies
+- usage_patterns
+files:
+- __init__.py
+child_directories:
+- __pycache__

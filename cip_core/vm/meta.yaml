@@ -1,0 +1,13 @@
+schema_version: '2.0'
+directory_name: vm
+description: This directory provides VM service integration for AI-powered repository
+  analysis. It enables triggering heavy computational tasks on a dedicated VM with
+  Ollama, GPU acceleration, and comprehensive AI analysis capabilities.
+semantic_scope:
+- ai/ml
+- vm
+- ollama
+files:
+- __init__.py
+child_directories:
+- __pycache__

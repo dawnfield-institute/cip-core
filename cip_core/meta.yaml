@@ -1,0 +1,25 @@
+schema_version: '2.0'
+directory_name: cip_core
+description: The cip_core directory contains the core components of the CIP system.
+  It includes various files and subdirectories that work together to provide the necessary
+  functionality for the system.
+semantic_scope:
+- python package
+- system administration
+- automation
+- workflows.
+files:
+- __init__.py
+- placeholders.py
+- workflows.py
+child_directories:
+- __pycache__
+- automation
+- cli
+- instructions
+- navigation
+- ollama_local
+- schemas
+- utils
+- validators
+- vm

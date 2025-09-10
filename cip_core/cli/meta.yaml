@@ -1,0 +1,13 @@
+schema_version: '2.0'
+directory_name: cli
+description: The cli directory contains the command line interface for the cip_core
+  package. It is a Python package with an __init__.py file that serves as the entry
+  point for the CLI. The main.py file is the primary script that implements the CLI,
+  and it is executed when the user runs the CLI command from the command line.
+semantic_scope:
+- cli
+files:
+- __init__.py
+- main.py
+child_directories:
+- __pycache__

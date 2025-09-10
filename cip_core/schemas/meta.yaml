@@ -1,0 +1,18 @@
+schema_version: '2.0'
+directory_name: schemas
+description: The "schemas" directory contains schema definitions for the CIP_Core
+  project. It includes various files and subdirectories that define the structure
+  and purpose of the schemas used in the project.
+semantic_scope:
+- python package
+- schema definitions
+- file types
+- directory naming conventions
+- notable files.
+files:
+- __init__.py
+- filename_tags.py
+- meta_yaml.py
+- repository.py
+child_directories:
+- __pycache__
