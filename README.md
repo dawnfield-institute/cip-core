@@ -35,6 +35,9 @@ pip install -e .
 
 # Verify installation
 cip --version
+
+# Alternative: Run directly without installation
+python -m cip_core.cli.main --version
 ```
 
 ### Basic Usage
@@ -93,6 +96,10 @@ cip validate --format json
 
 ```
 cip-core/
+├── .cip/                 # 🎯 CIP protocol configuration
+│   ├── meta.yaml         #    📋 Repository metadata
+│   ├── core.yaml         #    🗺️ Directory index
+│   └── instructions_v2.0.yaml # 📖 AI agent instructions
 ├── cip_core/              # 🐍 Core Python package
 │   ├── schemas/           #    📋 YAML schema validation
 │   ├── validators/        #    ✅ Compliance checking
@@ -116,6 +123,8 @@ cip-core/
 ```
 
 ## 🛠️ CLI Commands
+
+**Note:** The `cip` command requires installation via `pip install -e .` first. Alternatively, use `python -m cip_core.cli.main` to run commands directly.
 
 ### Core Operations
 ```bash
@@ -143,9 +152,6 @@ cip validate-links       # Check cross-repository links
 cip generate-metadata    # Rule-based metadata generation
 cip vm trigger           # Cloud AI analysis (planned)
 cip vm status           # Check analysis job status
-```
-├── tools/             # Standalone utilities
-└── tests/             # Comprehensive test suite
 ```
 
 ## 🤝 Contributing
