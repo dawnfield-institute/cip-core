@@ -5,8 +5,10 @@ Summary: Cognition Index Protocol implementation for multi-repository automation
 Home-page: https://github.com/dawnfield-institute/cip-core
 Author: Peter Groom
 Author-email: peter@dawnfield.institute
+License: MIT
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
 Classifier: Programming Language :: Python :: 3
@@ -17,6 +19,7 @@ Classifier: Programming Language :: Python :: 3.11
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: click>=8.0.0
 Requires-Dist: pyyaml>=6.0
 Requires-Dist: jsonschema>=4.0.0
@@ -45,63 +48,166 @@ Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
 Dynamic: home-page
+Dynamic: license
 Dynamic: provides-extra
 Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary
 
-# CIP-Core: Cognition Index Protocol Implementation
+# 🧠 CIP-Core: Cognition Index Protocol Implementation
 
-**Status:** Private Development Phase  
-**Target:** Foundation for Dawn Field Theory Multi-Repository Ecosystem  
-**Version:** 0.1.0-dev
+**AI-Enhanced Repository Automation for Scientific Computing**
+
+[![Version](https://img.shields.io/badge/version-0.1.0--dev-blue)](https://github.com/dawnfield-institute/cip-core)
+[![Python](https://img.shields.io/badge/python-3.8+-green)](https://python.org)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active%20development-orange)](https://github.com/dawnfield-institute/cip-core)
 
 ---
 
 ## 🎯 Overview
 
-CIP-Core is the foundational package for the **Cognition Index Protocol (CIP)**, enabling automated validation, scoring, and navigation across distributed repositories in the Dawn Field Theory ecosystem.
+CIP-Core is the foundational implementation of the **Cognition Index Protocol (CIP)**, providing AI-enhanced automation for repository management, validation, and cross-ecosystem navigation. Originally designed for the Dawn Field Theory ecosystem, CIP-Core enables reproducible scientific computing through intelligent metadata generation and protocol-driven validation.
 
-### Key Features
+### ✨ Key Features
 
-- **🔍 Schema Validation**: Validate CIP metadata and file structures
-- **📊 Comprehension Scoring**: Ground truth comparison and AI benchmarking
-- **🗺️ Multi-Repository Navigation**: Seamless cross-repo content discovery
-- **🤖 Automation-Ready**: CI/CD integration and agent workflows
-- **🔧 Developer Tools**: CLI and Python API for manual and automated use
+- **🤖 AI-Enhanced Metadata**: Intelligent directory descriptions using local Ollama integration
+- **� Comprehensive Validation**: Schema compliance, quality checks, and ecosystem link validation
+- **📊 Quality Assurance**: Automated detection of generic content and meaningful description requirements
+- **🗺️ Cross-Repository Navigation**: Seamless linking and discovery with `repo://` URL scheme
+- **🛠️ Developer CLI**: Complete command-line toolkit for repository automation
+- **📋 AI Instruction Generation**: Automated guidance files for AI agents and repository understanding
+- **� Ecosystem Integration**: Multi-repository workflows and dependency management
 
 ## 🚀 Quick Start
 
+### Installation
+
 ```bash
 # Install from source (development)
+git clone https://github.com/dawnfield-institute/cip-core.git
+cd cip-core
 pip install -e .
 
-# Initialize a repository with CIP metadata
-cip init --type=theory --license=AGPL-3.0
+# Verify installation
+cip --version
 
-# Validate CIP compliance
-cip validate --path=./
+# Alternative: Run directly without installation
+python -m cip_core.cli.main --version
+```
 
-# Run comprehension benchmark
-cip score --system=claude-sonnet --questions=auto
+### Basic Usage
+
+```bash
+# Initialize CIP metadata in your repository
+cip init --type protocol --title "My Project"
+
+# Generate AI-enhanced metadata for all directories
+cip ai-metadata --force --model codellama:latest
+
+# Generate AI instruction files
+cip generate-instructions --validate
+
+# Validate repository compliance
+cip validate
+
+# Bootstrap complete CIP automation
+cip bootstrap --type sdk
+```
+
+### AI Enhancement Workflow
+
+```bash
+# Test AI integration
+cip ai-enhance --test-only
+
+# Generate meaningful metadata (replaces generic descriptions)
+cip ai-metadata --force --path ./my-repository
+
+# Create navigation instructions for AI agents
+cip generate-instructions --validate
+
+# Validate quality and compliance
+cip validate --format json
 ```
 
 ## 📚 Documentation
 
-- [API Reference](docs/api/)
-- [Usage Guides](docs/guides/)
-- [Integration Examples](docs/examples/)
-- [CIP 2.0 Specification](spec/CIP_2.0_specification.md)
+### 📖 Getting Started
+- **[Quick Start Guide](docs/README.md)** - Overview of documentation structure
+- **[Technical Documentation](docs/technical/README.md)** - Implementation details and API reference
+- **[Integration Guide](docs/technical/README.md#integration-guide)** - Add CIP to existing projects
 
-## 🏗️ Architecture
+### 🏛️ Architecture & Design
+- **[Architecture Documentation](docs/architecture/)** - Protocol specifications and design
+- **[GPT Integration](docs/gpt/)** - AI integration patterns and prompts
+- **[Case Studies](docs/case_studies/)** - Real-world implementation examples
+
+### 🚦 Planning & Roadmap
+- **[Development Roadmap](roadmap/README.md)** - Planned features and timeline
+- **[TODO List](todo/README.md)** - Current development priorities
+- **[Known Limitations](docs/limitations/README.md)** - Current constraints and workarounds
+
+## 🏗️ Project Structure
 
 ```
 cip-core/
-├── cip_core/           # Core Python package
-├── reference_clients/  # Example integrations
-├── spec/              # Protocol documentation
-├── tools/             # Standalone utilities
-└── tests/             # Comprehensive test suite
+├── .cip/                 # 🎯 CIP protocol configuration
+│   ├── meta.yaml         #    📋 Repository metadata
+│   ├── core.yaml         #    🗺️ Directory index
+│   └── instructions_v2.0.yaml # 📖 AI agent instructions
+├── cip_core/              # 🐍 Core Python package
+│   ├── schemas/           #    📋 YAML schema validation
+│   ├── validators/        #    ✅ Compliance checking
+│   ├── automation/        #    🤖 AI-enhanced metadata generation
+│   ├── navigation/        #    🗺️ Cross-repository linking
+│   ├── instructions/      #    📖 AI instruction generation
+│   ├── ollama_local/      #    🤖 Local AI integration
+│   ├── vm/               #    ☁️ Cloud VM service integration
+│   ├── cli/              #    🛠️ Command-line interface
+│   └── utils/            #    🔧 Common utilities
+├── docs/                 # 📚 Comprehensive documentation
+│   ├── architecture/     #    🏛️ Protocol specifications
+│   ├── technical/        #    🔧 Implementation guides
+│   ├── case_studies/     #    📝 Real-world examples
+│   ├── gpt/             #    🤖 AI integration guides
+│   └── limitations/      #    ⚠️ Known constraints
+├── roadmap/             # 🗺️ Development planning
+├── todo/                # 📋 Current priorities
+├── templates/           # 📄 Configuration templates
+└── tests/              # 🧪 Test suite
+```
+
+## 🛠️ CLI Commands
+
+**Note:** The `cip` command requires installation via `pip install -e .` first. Alternatively, use `python -m cip_core.cli.main` to run commands directly.
+
+### Core Operations
+```bash
+cip init                    # Initialize repository with CIP metadata
+cip validate               # Check repository compliance
+cip bootstrap              # Complete CIP setup automation
+```
+
+### AI-Enhanced Features
+```bash
+cip ai-metadata           # Generate intelligent descriptions
+cip ai-enhance            # Full AI enhancement workflow
+cip generate-instructions # Create AI guidance files
+```
+
+### Repository Navigation
+```bash
+cip resolve               # Resolve repo:// URLs to content
+cip list-repos           # List ecosystem repositories
+cip validate-links       # Check cross-repository links
+```
+
+### Development Tools
+```bash
+cip generate-metadata    # Rule-based metadata generation
+cip vm trigger           # Cloud AI analysis (planned)
+cip vm status           # Check analysis job status
 ```
 
 ## 🤝 Contributing
@@ -110,7 +216,9 @@ This repository is currently in private development. Once stabilized, we'll welc
 
 ## 📄 License
 
-*License under review - considering MIT or Apache-2.0 for maximum ecosystem compatibility*
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+**Why MIT?** CIP-Core is designed as infrastructure for the broader scientific computing ecosystem. The MIT license ensures maximum compatibility and adoption across academic, commercial, and open source projects.
 
 ---
 
