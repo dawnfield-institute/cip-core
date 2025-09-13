@@ -58,6 +58,74 @@ class AIMetadataEnhancer:
         self.ollama = OllamaClient()
         self.model = model
         self.yaml_parser = YamlParser()
+        self.lexicon = self._load_lexicon()
+    
+    def _load_lexicon(self) -> Dict[str, Any]:
+        """Load repository lexicon from .cip/lexicon.yaml if it exists."""
+        try:
+            lexicon_path = Path.cwd() / '.cip' / 'lexicon.yaml'
+            if lexicon_path.exists():
+                with open(lexicon_path, 'r', encoding='utf-8') as f:
+                    lexicon_data = yaml.safe_load(f)
+                    if lexicon_data and lexicon_data.get('terms'):
+                        print(f"📚 Loaded lexicon with {len(lexicon_data.get('terms', []))} terms")
+                        return lexicon_data
+        except Exception:
+            # Silently handle any lexicon loading errors
+            pass
+        return {"terms": [], "abbreviations": {}}
+    
+    def _build_lexicon_context(self, analysis: Dict[str, Any]) -> str:
+        """Build lexicon context for AI prompts based on detected terms."""
+        if not self.lexicon or not self.lexicon.get("terms"):
+            return ""
+        
+        try:
+            # Find relevant terms based on directory name and file content
+            relevant_terms = []
+            search_text = (analysis['directory_name'] + " " + 
+                          " ".join(analysis.get('code_files', [])) + " " +
+                          " ".join([item.get('content', '') for item in analysis.get('sample_content', [])])).lower()
+            
+            # Check for term matches
+            for term in self.lexicon['terms']:
+                term_name = term.get('name', '').lower()
+                term_full = term.get('full_name', '').lower()
+                
+                if (term_name in search_text or 
+                    term_full in search_text or
+                    any(tag in search_text for tag in term.get('tags', []))):
+                    relevant_terms.append(term)
+            
+            # Check abbreviations
+            abbreviations = self.lexicon.get('abbreviations', {})
+            for abbrev, full_name in abbreviations.items():
+                if abbrev.lower() in search_text:
+                    # Find the full term definition
+                    for term in self.lexicon['terms']:
+                        if term.get('name', '').lower() == full_name.lower():
+                            relevant_terms.append(term)
+                            break
+            
+            if not relevant_terms:
+                return ""
+            
+            # Build context string
+            context_lines = ["IMPORTANT TERMINOLOGY (use these exact definitions):"]
+            for term in relevant_terms[:5]:  # Limit to 5 most relevant
+                name = term.get('name', '')
+                full_name = term.get('full_name', '')
+                description = term.get('description', '')
+                
+                if full_name and full_name != name:
+                    context_lines.append(f"- {name} ({full_name}): {description}")
+                else:
+                    context_lines.append(f"- {name}: {description}")
+            
+            return "\n".join(context_lines)
+        except Exception:
+            # If lexicon processing fails, continue without it
+            return ""
     
     def analyze_directory_content(self, directory_path: Path) -> Dict[str, Any]:
         """Analyze directory content and generate AI insights."""
@@ -103,10 +171,15 @@ class AIMetadataEnhancer:
     def generate_ai_description(self, analysis: Dict[str, Any]) -> str:
         """Generate AI-powered description for directory."""
         
-        system_prompt = """You are an expert code analyst. Generate a concise, technical description 
+        # Build lexicon context
+        lexicon_context = self._build_lexicon_context(analysis)
+        
+        system_prompt = f"""You are an expert code analyst working with specialized terminology. Generate a concise, technical description 
         of what this directory contains based on the file structure and content samples. 
         Focus on the purpose, functionality, and role within a larger project.
-        Keep it under 100 words and professional."""
+        Keep it under 100 words and professional.
+        
+        {lexicon_context}"""
         
         content_summary = ""
         if analysis["sample_content"]:
@@ -139,9 +212,14 @@ class AIMetadataEnhancer:
     def generate_semantic_tags(self, analysis: Dict[str, Any], description: str) -> List[str]:
         """Generate semantic tags using AI analysis."""
         
-        system_prompt = """Generate exactly 3-5 semantic tags that describe the purpose and content of this directory.
+        # Build lexicon context for tags
+        lexicon_context = self._build_lexicon_context(analysis)
+        
+        system_prompt = f"""Generate exactly 3-5 semantic tags that describe the purpose and content of this directory.
         Tags should be lowercase, single words or hyphenated phrases. Focus on functionality, technology, and purpose.
-        Return ONLY the tags separated by commas, no other text or formatting."""
+        Return ONLY the tags separated by commas, no other text or formatting.
+        
+        {lexicon_context}"""
         
         prompt = f"""
         Directory: {analysis['directory_name']}

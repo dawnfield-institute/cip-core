@@ -26,9 +26,11 @@ class AIEnhancedDirectoryMetadataGenerator:
         
         # Try to import Ollama integration
         try:
-            from ..ollama_local import OllamaClient
+            from ..ollama_local import OllamaClient, AIMetadataEnhancer
             self.ollama = OllamaClient()  # Use default base URL
+            self.ai_enhancer = AIMetadataEnhancer(model=model)
             self.ai_enabled = True
+            print(f"✅ AI enhancement enabled with model: {model}")
         except ImportError:
             print("⚠️  Ollama not available, falling back to rule-based generation")
             self.ai_enabled = False
@@ -472,13 +474,26 @@ SEMANTIC_SCOPE: [keyword1, keyword2, keyword3, keyword4]
         files, child_dirs = self._get_child_dirs_and_files(path)
         
         # Get AI-generated content
-        ai_metadata = self._generate_ai_metadata(context)
+        if self.ai_enabled:
+            try:
+                ai_metadata = self.ai_enhancer.enhance_metadata(path)
+                description = ai_metadata.get('description', self._generate_fallback_description(context))
+                semantic_scope = ai_metadata.get('semantic_scope', [path.name])
+            except Exception as e:
+                print(f"⚠️  AI generation failed, using fallback: {e}")
+                fallback = self._generate_fallback_metadata(context, path.name)
+                description = fallback['description']
+                semantic_scope = fallback['semantic_scope']
+        else:
+            fallback = self._generate_fallback_metadata(context, path.name)
+            description = fallback['description']
+            semantic_scope = fallback['semantic_scope']
         
         metadata = {
             'schema_version': '2.0',
             'directory_name': path.name,
-            'description': ai_metadata['description'],
-            'semantic_scope': ai_metadata['semantic_scope'],
+            'description': description,
+            'semantic_scope': semantic_scope,
             'files': files,
             'child_directories': child_dirs,
         }
@@ -542,3 +557,25 @@ SEMANTIC_SCOPE: [keyword1, keyword2, keyword3, keyword4]
         print(f"🤖 AI Model: {self.model}")
         print(f"📋 Loaded {len(self.gitignore_patterns)} gitignore patterns")
         self.process_directory(self.repo_root, force)
+    
+    def _generate_fallback_description(self, context: Dict[str, Any]) -> str:
+        """Generate fallback description when AI is not available."""
+        dir_name = context.get('directory_name', 'unknown')
+        file_count = context.get('file_count', 0)
+        
+        # Basic rule-based description
+        if file_count == 0:
+            return f"Empty directory: {dir_name}"
+        elif any(f.endswith('.py') for f in context.get('files', [])):
+            return f"Python module containing {file_count} files"
+        elif any(f.endswith('.md') for f in context.get('files', [])):
+            return f"Documentation directory with {file_count} files"
+        else:
+            return f"Directory containing {file_count} files"
+    
+    def _generate_fallback_metadata(self, context: Dict[str, Any], dir_name: str) -> Dict[str, Any]:
+        """Generate fallback metadata when AI is not available."""
+        return {
+            'description': self._generate_fallback_description(context),
+            'semantic_scope': [dir_name]
+        }

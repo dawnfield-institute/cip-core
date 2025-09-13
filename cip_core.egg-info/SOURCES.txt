@@ -37,4 +37,9 @@ cip_core/validators/cross_repo.py
 cip_core/validators/metadata.py
 cip_core/vm/__init__.py
 cip_core/vm/service.py
+tests/test_automation.py
+tests/test_automation_new.py
 tests/test_basic.py
+tests/test_cli.py
+tests/test_schemas.py
+tests/test_validators.py
