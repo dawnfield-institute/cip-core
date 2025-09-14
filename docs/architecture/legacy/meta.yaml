@@ -1,0 +1,19 @@
+schema_version: '2.0'
+directory_name: legacy
+description: The legacy directory contains documentation and reference materials for
+  legacy. It includes explanatory documents that help users understand and work with
+  this component.
+semantic_scope:
+- legacy
+files:
+- v1-architecture.md
+- v2-gpt-architecture.md
+- v3-metadata.md
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 4
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1
+    .md: 3

@@ -1,23 +1,17 @@
 schema_version: '2.0'
 directory_name: limitations
-description: The limitations directory within the Dawn Field Theory / Cognition Index
-  Protocol (CIP) ecosystem is a space for researchers to explore and develop new approaches
-  to AI-enhanced scientific computing. This directory contains notable files that
-  provide information on how to set up, test, and deploy AI models using the CIP protocol.
-  It also contains documentation and case studies of real-world integrations and experiments
-  that demonstrate the value of AI-enhanced research in various fields.
+description: The limitations directory contains documentation and readme files for
+  limitations. It provides essential information, guides, and reference materials
+  to help users understand and work with this component.
 semantic_scope:
-- ai-enhanced scientific computing
-- cognition index protocol
-- dawn field theory
-- openai
-- anthropic's ai assistant
-- gpt
-- sonnet variants
-- technical specifications
-- protocol development
-- research documentation
-- reproducible scientific computing.
+- limitations
 files:
 - README.md
 child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1
+    .md: 1

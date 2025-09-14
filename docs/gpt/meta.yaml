@@ -1,14 +1,21 @@
 schema_version: '2.0'
 directory_name: gpt
-description: gpt
+description: The gpt directory contains user guides and tutorials for gpt. It includes
+  step-by-step instructions, examples, and educational materials for users and developers.
 semantic_scope:
 - gpt
 files:
-- CIP_GPT_architecturev2.md
 - git_action.yaml
 - gpt_resource_guide.yaml
 - how_to_use_gpt.md
-- metadata_architecturev3.md
 - privacy-policy.md
 - prompt.txt
 child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 6
+  directory_count: 0
+  primary_file_types:
+    .yaml: 3
+    .md: 2
+    .txt: 1

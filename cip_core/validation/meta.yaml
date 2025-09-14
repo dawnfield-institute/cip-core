@@ -1,0 +1,19 @@
+schema_version: '2.0'
+directory_name: validation
+description: The validation directory contains the validation framework for CIP compliance.
+  It includes schema validators, compliance checkers, and quality assessment tools
+  that ensure repositories meet CIP standards.
+semantic_scope:
+- validation
+- testing
+files:
+- __init__.py
+- engine.py
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .py: 2
+    .yaml: 1

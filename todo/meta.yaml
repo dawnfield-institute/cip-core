@@ -1,12 +1,18 @@
 schema_version: '2.0'
 directory_name: todo
-description: This directory structure contains a list of tasks to be completed, with
-  the main file being 'README.md'. The directory name 'todo' suggests that it is related
-  to a task or project management, and the presence of 'todolist_imported.md' suggests
-  that it may contain information about importing tasks from other sources.
+description: The todo directory contains documentation and readme files for todo.
+  It provides essential information, guides, and reference materials to help users
+  understand and work with this component.
 semantic_scope:
 - todo
 files:
 - README.md
 - todolist_imported.md
 child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1
+    .md: 2

@@ -171,6 +171,89 @@ class MetaYamlSchema:
             schema_version=schema_version
         )
     
+    def validate_file_with_context(self, file_path: str, is_root: bool = False) -> ValidationResult:
+        """
+        Validate a meta.yaml file with context awareness.
+        
+        Args:
+            file_path: Path to the meta.yaml file
+            is_root: Whether this is a root-level meta.yaml file
+            
+        Returns:
+            ValidationResult with context-aware validation
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = yaml.safe_load(f) or {}
+        except Exception as e:
+            return ValidationResult(False, [f"Failed to load YAML: {str(e)}"], [])
+        
+        return self.validate_with_context(data, is_root)
+    
+    def validate_with_context(self, data: Dict[str, Any], is_root: bool = False) -> ValidationResult:
+        """
+        Validate metadata with context awareness.
+        
+        Args:
+            data: Metadata dictionary to validate
+            is_root: Whether this is root-level metadata
+            
+        Returns:
+            ValidationResult with appropriate validation rules
+        """
+        errors = []
+        warnings = []
+        
+        # Basic validation
+        if not isinstance(data, dict):
+            return ValidationResult(False, ["Metadata must be a dictionary"], [])
+        
+        schema_version = data.get("schema_version", "2.0")
+        
+        # Context-aware schema validation
+        if is_root:
+            # Root directories require repository_role
+            required_fields = ["schema_version", "repository_role"]
+        else:
+            # Subdirectories don't require repository_role
+            required_fields = ["schema_version"]
+        
+        # Check required fields
+        for field in required_fields:
+            if field not in data:
+                errors.append(f"'{field}' is a required property")
+        
+        if errors:
+            return ValidationResult(False, errors, warnings)
+        
+        # Validate schema version
+        if schema_version not in self.schemas:
+            errors.append(f"Unsupported schema version: {schema_version}")
+            return ValidationResult(False, errors, warnings)
+        
+        # Create context-appropriate schema for validation
+        schema = dict(self.schemas[schema_version])
+        schema["required"] = required_fields
+        
+        # Validate against modified schema
+        try:
+            validate(instance=data, schema=schema)
+        except ValidationError as e:
+            errors.append(f"Schema validation error: {e.message}")
+            return ValidationResult(False, errors, warnings)
+        
+        # Additional CIP-specific validations
+        warnings.extend(self._validate_ecosystem_links(data))
+        if is_root:
+            warnings.extend(self._validate_repository_role(data))
+        
+        return ValidationResult(
+            is_valid=True,
+            errors=errors,
+            warnings=warnings,
+            schema_version=schema_version
+        )
+    
     def _validate_ecosystem_links(self, data: Dict[str, Any]) -> List[str]:
         """Validate ecosystem_links follow repo:// convention."""
         warnings = []

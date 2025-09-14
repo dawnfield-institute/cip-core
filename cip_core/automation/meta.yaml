@@ -1,17 +1,22 @@
 schema_version: '2.0'
 directory_name: automation
-description: This directory provides an automation workflow for managing metadata
-  generation and semantic analysis using Ollama AI. It contains implementation code
-  for handling repository navigation and cross-project content resolution using repo://
-  URLs, as well as VM service integration for cloud-based AI processing and analysis
-  jobs.
+description: The automation directory is a Python package containing automation modules
+  and functionality. It provides a structured collection of related code organized
+  for easy import and use.
 semantic_scope:
-- repository management
-- metadata generation
-- semantic analysis
-- ai
-- machine learning
+- automation
+- workflows
 files:
 - __init__.py
-child_directories:
-- __pycache__
+- ai_enhanced_generator.py
+- coordinator.py
+- github_workflows.py
+- metadata_generator.py
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 6
+  directory_count: 0
+  primary_file_types:
+    .py: 5
+    .yaml: 1

@@ -1,22 +1,30 @@
 schema_version: '2.0'
 directory_name: docs
-description: The directory "docs" in the Cognition Index Protocol (CIP) ecosystem
-  contains technical documentation and metadata related to the development and implementation
-  of reproducible scientific computing and AI-enhanced research protocols. It includes
-  YAML configuration files, Markdown documentation, and various subdirectories that
-  detail specific aspects of the system, such as architecture, case studies, and limitations.
+description: The docs directory contains project documentation, user guides, and reference
+  materials. It serves as the central hub for all written materials that help users
+  understand and work with the project.
 semantic_scope:
-- research
-- scientific computing
-- ai
-- reproducibility
-- protocol development
-- cognition index protocol.
+- documentation
+- guides
 files:
+- EXAMPLES.md
+- QUICK_START.md
 - README.md
+- WHY_CIP.md
 child_directories:
 - architecture
-- case_studies
+- case-studies
+- examples
 - gpt
 - limitations
+- reference
+- scripts
 - technical
+- user-guide
+generation_context:
+  generator: ai_enhanced
+  file_count: 5
+  directory_count: 9
+  primary_file_types:
+    .md: 4
+    .yaml: 1

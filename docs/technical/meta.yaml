@@ -1,11 +1,17 @@
 schema_version: '2.0'
 directory_name: technical
-description: This directory contains technical documentation for the CIP-Core package,
-  which provides functionality related to compliance checking and quality validation.
+description: The technical directory contains documentation and readme files for technical.
+  It provides essential information, guides, and reference materials to help users
+  understand and work with this component.
 semantic_scope:
-- ai/ml
-- compliance
-- quality validation
+- technical
 files:
 - README.md
 child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1
+    .md: 1

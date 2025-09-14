@@ -143,8 +143,8 @@ class ComplianceValidator:
         
         passed += 1  # File exists
         
-        # Validate schema
-        validation_result = self.meta_validator.validate_file(meta_path)
+        # Validate schema - .cip/meta.yaml is not a root file so repository_role not required
+        validation_result = self.meta_validator.validate_file_with_context(str(meta_path), is_root=False)
         
         if validation_result.is_valid:
             passed += 3  # Valid schema, required fields, format

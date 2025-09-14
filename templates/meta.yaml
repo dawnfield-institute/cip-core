@@ -1,12 +1,16 @@
 schema_version: '2.0'
 directory_name: templates
-description: The templates directory contains two configuration files for a VM (Virtual
-  Machine) - vm-config.yaml and meta.yaml.
+description: The templates directory serves as temporary storage for templates operations.
+  It contains transient files, intermediate results, and temporary data that supports
+  ongoing work.
 semantic_scope:
-- virtual machine
-- cloud computing
-- configuration file
-- template
+- templates
 files:
 - vm-config.yaml
 child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 0
+  primary_file_types:
+    .yaml: 2

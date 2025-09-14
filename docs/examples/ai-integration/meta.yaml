@@ -1,0 +1,15 @@
+schema_version: '2.0'
+directory_name: ai-integration
+description: The ai-integration directory is reserved for integration functionality.
+  It provides a dedicated space for organizing related files and components.
+semantic_scope:
+- integration
+- ai
+files: []
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 1
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1

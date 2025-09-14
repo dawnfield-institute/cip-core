@@ -1,0 +1,23 @@
+schema_version: '2.0'
+directory_name: examples
+description: The examples directory provides practical guides and step-by-step tutorials
+  for using CIP effectively. It contains hands-on examples for common use cases, from
+  basic setup to advanced automation workflows, repository configurations, and AI
+  integration scenarios.
+semantic_scope:
+- examples
+- demonstrations
+files:
+- README.md
+child_directories:
+- ai-integration
+- automation-workflows
+- migration-guides
+- repository-setup
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 4
+  primary_file_types:
+    .yaml: 1
+    .md: 1

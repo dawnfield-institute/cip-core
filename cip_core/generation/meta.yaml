@@ -1,0 +1,19 @@
+schema_version: '2.0'
+directory_name: generation
+description: The generation directory houses the metadata generation strategies and
+  algorithms. It contains different generation approaches including rule-based, AI-enhanced,
+  and hybrid strategies for creating directory metadata.
+semantic_scope:
+- generation
+files:
+- __init__.py
+- engine.py
+- strategies.py
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 4
+  directory_count: 0
+  primary_file_types:
+    .py: 3
+    .yaml: 1

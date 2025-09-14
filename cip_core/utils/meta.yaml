@@ -1,11 +1,19 @@
 schema_version: '2.0'
 directory_name: utils
-description: This directory contains utility code for CIP-Core operations.
+description: The utils directory provides utility functions and helper modules used
+  throughout the CIP codebase. It contains common functionality for file operations,
+  data processing, and system interactions.
 semantic_scope:
-- ai/ml
-- implementation
-- utility
+- utilities
+- helpers
 files:
 - __init__.py
-child_directories:
-- __pycache__
+- yaml_parser.py
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .py: 2
+    .yaml: 1

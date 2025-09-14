@@ -1,5 +1,5 @@
 """
-Tests for cip_core.validators module.
+Tests for cip_core.validators module (updated for unified validation).
 """
 
 import pytest
@@ -7,10 +7,37 @@ import yaml
 from pathlib import Path
 
 from cip_core.validators import ComplianceValidator, MetadataValidator, CrossRepoValidator
+from cip_core.engine import CIPEngine
+
+
+class TestUnifiedValidation:
+    """Test the unified validation system through CIPEngine."""
+
+    def test_cip_engine_validate_repository(self, temp_repo):
+        """Test repository validation through CIP engine."""
+        # Create basic CIP structure
+        (temp_repo / ".cip").mkdir()
+        (temp_repo / "README.md").write_text("# Test Repository")
+        
+        engine = CIPEngine(repo_path=str(temp_repo))
+        
+        # Validate repository
+        result = engine.validate_repository()
+        
+        # Check result structure
+        assert hasattr(result, 'success')
+        assert hasattr(result, 'score')
+        assert hasattr(result, 'total_checks')
+        assert hasattr(result, 'passed_checks')
+        assert hasattr(result, 'issues')
+        assert hasattr(result, 'summary')
+        
+        # Score should be between 0 and 1
+        assert 0.0 <= result.score <= 1.0
 
 
 class TestComplianceValidator:
-    """Test the ComplianceValidator class."""
+    """Test the ComplianceValidator class (backwards compatibility)."""
 
     def test_validate_compliant_repository(self, compliance_validator, cip_repo):
         """Test validation of a compliant repository."""

@@ -1,13 +1,19 @@
 schema_version: '2.0'
 directory_name: ollama_local
-description: This directory contains local Ollama integration for AI-enhanced CIP
-  metadata generation. It provides functionality for implementing and testing the
-  VM service for cloud-based AI processing and analysis jobs.
+description: The ollama_local directory is a Python package containing ollama modules
+  and functionality. It provides a structured collection of related code organized
+  for easy import and use.
 semantic_scope:
-- implementation
-- functionality
-- ai/ml
+- ollama
+- local
 files:
 - __init__.py
-child_directories:
-- __pycache__
+- client.py
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .py: 2
+    .yaml: 1

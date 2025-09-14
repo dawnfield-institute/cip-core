@@ -1,33 +1,58 @@
 # 📚 CIP-Core Documentation
 
-This directory contains comprehensive documentation for the Cognition Index Protocol (CIP) implementation and ecosystem.
+> **Comprehensive documentation for the Cognition Index Protocol (CIP) implementation and ecosystem**
 
-## 📁 Structure
+## 🎯 Quick Start
 
-### 🏛️ Architecture (`architecture/`)
-Core protocol specifications, schemas, and architectural designs:
-- **CIP Architecture v1** - Original protocol design
-- **Protocol specifications** - Detailed technical specs
-- **Schema definitions** - YAML schema documentation
+- **New to CIP?** → [`QUICK_START.md`](QUICK_START.md)
+- **Want to understand why?** → [`WHY_CIP.md`](WHY_CIP.md)
+- **Ready to use CIP?** → [`user-guide/`](user-guide/)
+- **Want to contribute?** → [`developer-guide/`](developer-guide/)
 
-### 🤖 GPT Integration (`gpt/`)
-AI integration patterns, prompts, and guidance:
-- **GPT Architecture v2** - AI integration design
-- **Resource Guides** - Curated documentation for AI systems
-- **Prompt Engineering** - Templates and best practices
-- **Privacy Policies** - AI usage guidelines
+---
 
-### 📋 Case Studies (`case_studies/`)
-Real-world implementation examples and results:
-- **Claude Sonnet 4** - AI assistant integration case study
-- **GitHub Copilot** - Development workflow integration
-- **Reproduction Guides** - Step-by-step implementation guides
+## 📁 Documentation Structure
 
-### 🔧 Technical Documentation (`technical/`)
-Implementation details, APIs, and technical specifications:
-- **CLI Documentation** - Command-line tool reference
-- **API Reference** - Python package documentation
-- **Integration Guides** - How to integrate CIP with existing projects
+### 🚀 **For Users**
+- **[`user-guide/`](user-guide/)** - Installation, configuration, and daily usage
+- **[`examples/`](examples/)** - Practical tutorials and setup guides
+- **[`reference/`](reference/)** - Schema definitions, validation rules, and quick lookup
+
+### 🔧 **For Developers**  
+- **[`developer-guide/`](developer-guide/)** - Contributing, class hierarchy, and API reference
+- **[`architecture/`](architecture/)** - Technical design and system architecture
+- **[`scripts/`](scripts/)** - Automation and integration tooling
+
+### � **For Decision Makers**
+- **[`case-studies/`](case-studies/)** - Real-world implementations and results
+- **[`adoption/`](adoption/)** - Roadmaps and scaling strategies
+
+---
+
+## 🔄 **Recent Changes**
+
+> **v4 Documentation Restructure (Sept 2025)**
+> 
+> We've reorganized the documentation to better serve different user types and consolidated our architecture documents. See [`architecture/legacy/`](architecture/legacy/) for previous versions.
+
+---
+
+## 🤝 **Contributing to Documentation**
+
+Found something unclear or outdated? See [`developer-guide/contributing.md`](developer-guide/contributing.md) for how to help improve these docs.
+
+---
+
+## 📋 **Quick Navigation**
+
+| I want to... | Go to... |
+|--------------|----------|
+| Install and use CIP | [`user-guide/installation.md`](user-guide/installation.md) |
+| Set up a new repository | [`examples/repository-setup/`](examples/repository-setup/) |
+| Understand CIP's design | [`architecture/core-design.md`](architecture/core-design.md) |
+| Contribute code | [`developer-guide/`](developer-guide/) |
+| See real implementations | [`case-studies/`](case-studies/) |
+| Get help with problems | [`user-guide/troubleshooting.md`](user-guide/troubleshooting.md) |
 - **Schema Validation** - Metadata validation technical details
 
 ### ⚠️ Known Limitations (`limitations/`)

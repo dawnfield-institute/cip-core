@@ -1,10 +1,5 @@
 """
-CLI from ..validators import ComplianceValidator
-from ..schemas import MetaYamlSchema
-from ..utils import YamlParser
-from ..automation import CIPAutomation, DirectoryMetadataGenerator, GitHubWorkflowGenerator
-from ..navigation import RepositoryResolver, DependencyGraph, CrossRepoValidator
-from ..vm import CIPVMService, GitHubVMIntegration, load_vm_config point for CIP-Core tools.
+CLI entry point for CIP-Core tools.
 """
 
 import click
@@ -12,10 +7,16 @@ from pathlib import Path
 import sys
 import json
 
-from ..validators import ComplianceValidator
+# New unified imports
+from ..engine import CIPEngine
+from ..engine.core import InitConfig
+from ..engine.repository import ProjectType
+from ..engine.config import GenerationConfig
+
+# Legacy imports for backwards compatibility where needed
 from ..schemas import MetaYamlSchema
 from ..utils import YamlParser
-from ..automation import CIPAutomation, DirectoryMetadataGenerator, AIEnhancedDirectoryMetadataGenerator, GitHubWorkflowGenerator
+from ..automation import GitHubWorkflowGenerator
 from ..navigation import RepositoryResolver, DependencyGraph, ContentDiscovery
 from ..instructions import generate_cip_instructions, CIPInstructionsGenerator
 
@@ -40,45 +41,73 @@ def cli():
 def validate(path: str, format: str, config: str):
     """Validate repository for CIP compliance."""
     
-    # Load configuration if provided
-    validator_config = {}
-    if config:
-        try:
-            with open(config, 'r') as f:
-                validator_config = json.load(f)
-        except Exception as e:
-            click.echo(f"Error loading config: {e}", err=True)
+    try:
+        # Initialize CIP engine
+        engine = CIPEngine(repo_path=path)
+        
+        # Load custom validation configuration if provided
+        if config:
+            try:
+                with open(config, 'r') as f:
+                    config_data = json.load(f)
+                # Apply custom config to engine if needed
+                engine.update_config(config_data)
+            except Exception as e:
+                click.echo(f"Error loading config: {e}", err=True)
+                sys.exit(1)
+        
+        # Run validation using unified engine
+        result = engine.validate_repository()
+        
+        # Convert ValidationResult to ComplianceReport format for output consistency
+        if format == "json":
+            output = {
+                "score": result.score,
+                "is_compliant": result.score >= 0.8,  # Use same threshold as ComplianceValidator
+                "total_checks": result.total_checks,
+                "passed_checks": result.passed_checks,
+                "issues": result.issues
+            }
+            click.echo(json.dumps(output, indent=2))
+        else:
+            # Generate text summary similar to original format
+            click.echo("CIP Compliance Report")
+            click.echo("====================")
+            click.echo()
+            click.echo(f"Repository: {path}")
+            
+            if result.score >= 0.8:
+                status = "✅ COMPLIANT"
+            else:
+                status = "❌ NON-COMPLIANT"
+            
+            click.echo(f"Status: {status}")
+            click.echo(f"Score: {result.score:.1%} ({result.passed_checks}/{result.total_checks} checks passed)")
+            
+            if result.issues:
+                click.echo()
+                click.echo("Issues Found:")
+                
+                # Group issues by level
+                errors = [i for i in result.issues if i['level'] == 'error']
+                warnings = [i for i in result.issues if i['level'] == 'warning']
+                
+                for issue in errors:
+                    click.echo(f"❌ {issue['category'].upper()}: {issue['message']}")
+                    if issue.get('suggested_fix'):
+                        click.echo(f"   💡 {issue['suggested_fix']}")
+                
+                for issue in warnings:
+                    click.echo(f"⚠️ {issue['category'].upper()}: {issue['message']}")
+                    if issue.get('suggested_fix'):
+                        click.echo(f"   💡 {issue['suggested_fix']}")
+        
+        # Exit with error code if not compliant
+        if result.score < 0.8:
             sys.exit(1)
-    
-    # Run validation
-    validator = ComplianceValidator(validator_config)
-    report = validator.validate_repository(path)
-    
-    # Output results
-    if format == "json":
-        result = {
-            "score": report.score,
-            "is_compliant": report.is_compliant,
-            "total_checks": report.total_checks,
-            "passed_checks": report.passed_checks,
-            "issues": [
-                {
-                    "level": issue.level,
-                    "category": issue.category,
-                    "message": issue.message,
-                    "file_path": issue.file_path,
-                    "suggested_fix": issue.suggested_fix
-                }
-                for issue in report.issues
-            ]
-        }
-        click.echo(json.dumps(result, indent=2))
-    else:
-        summary = validator.generate_compliance_summary(report)
-        click.echo(summary)
-    
-    # Exit with error code if not compliant
-    if not report.is_compliant:
+            
+    except Exception as e:
+        click.echo(f"Validation failed: {str(e)}", err=True)
         sys.exit(1)
 
 
@@ -93,34 +122,39 @@ def validate(path: str, format: str, config: str):
 def init(type: str, title: str, description: str, license: str, force: bool):
     """Initialize repository with CIP metadata."""
     
-    cip_dir = Path(".cip")
-    meta_path = cip_dir / "meta.yaml"
-    
-    # Check if already exists
-    if meta_path.exists() and not force:
-        click.echo("CIP metadata already exists. Use --force to overwrite.", err=True)
+    try:
+        # Map CLI type to ProjectType enum
+        type_mapping = {
+            "theory": ProjectType.THEORY,
+            "sdk": ProjectType.SDK, 
+            "devkit": ProjectType.DEVKIT,
+            "models": ProjectType.MODELS,
+            "protocol": ProjectType.PROTOCOL,
+            "infrastructure": ProjectType.INFRASTRUCTURE
+        }
+        
+        project_type = type_mapping.get(type, ProjectType.THEORY)
+        
+        # Create initialization config
+        init_config = InitConfig(
+            project_type=project_type,
+            title=title,
+            description=description,
+            license=license,
+            force=force
+        )
+        
+        # Initialize with CIP engine
+        engine = CIPEngine(repo_path=".")
+        result = engine.initialize_repository(init_config)
+        
+        click.echo(f"✅ Initialized CIP metadata")
+        click.echo(f"Repository type: {type}")
+        click.echo("Run 'cip validate' to check compliance.")
+        
+    except Exception as e:
+        click.echo(f"Initialization failed: {str(e)}", err=True)
         sys.exit(1)
-    
-    # Create .cip directory
-    cip_dir.mkdir(exist_ok=True)
-    
-    # Generate meta.yaml template
-    schema = MetaYamlSchema()
-    template_data = schema.generate_template(
-        repository_role=type,
-        title=title,
-        description=description, 
-        license=license
-    )
-    
-    # Write meta.yaml
-    import yaml
-    with open(meta_path, 'w') as f:
-        yaml.dump(template_data, f, default_flow_style=False, sort_keys=False)
-    
-    click.echo(f"✅ Initialized CIP metadata in {meta_path}")
-    click.echo(f"Repository type: {type}")
-    click.echo("Run 'cip validate' to check compliance.")
 
 
 @cli.command()
@@ -149,24 +183,33 @@ def generate_instructions(path: str, validate: bool):
     try:
         click.echo("🤖 Generating CIP instruction files...")
         
-        # Generate instructions
-        generated_files = generate_cip_instructions(path)
+        # Initialize CIP engine
+        engine = CIPEngine(repo_path=path)
         
-        click.echo("✅ Generated instruction files:")
-        for instruction_type, file_path in generated_files.items():
-            click.echo(f"   📋 {instruction_type}: {file_path}")
+        # Generate instructions using unified engine
+        result = engine.generate_instructions()
+        
+        if result.success:
+            click.echo("✅ Generated instruction files:")
+            # Parse the content to show generated files
+            lines = result.content.split('\n')
+            for line in lines:
+                if line.startswith('- '):
+                    click.echo(f"   📋 {line[2:]}")
+        else:
+            click.echo(f"❌ Instruction generation failed: {', '.join(result.errors)}")
+            sys.exit(1)
         
         # Validate if requested
         if validate:
             click.echo("\n🔍 Validating generated instructions...")
-            generator = CIPInstructionsGenerator(path)
-            validation = generator.validate_instructions()
+            validation = engine.instructions.validate_instructions()
             
-            if validation["valid"]:
+            if validation.get("valid", False):
                 click.echo("✅ All instruction files valid")
             else:
                 click.echo("❌ Validation issues found:")
-                for issue in validation["issues"]:
+                for issue in validation.get("errors", []):
                     click.echo(f"   ⚠️  {issue}")
         
         click.echo("\n🎯 Instructions ready for AI agent consumption!")
@@ -180,10 +223,28 @@ def generate_instructions(path: str, validate: bool):
 @click.option("--force", "-f", is_flag=True, help="Overwrite existing meta.yaml files")
 @click.option("--path", "-p", default=".", help="Path to repository root")
 def generate_metadata(force: bool, path: str):
-    """Generate directory-level meta.yaml files automatically."""
-    generator = DirectoryMetadataGenerator(path)
-    generator.process_repository(force=force)
-    click.echo("✅ Directory metadata generation complete")
+    """Generate directory-level meta.yaml files automatically (rule-based)."""
+    try:
+        engine = CIPEngine(repo_path=path)
+        config = GenerationConfig(
+            strategy="rule_based",
+            force_overwrite=force
+        )
+        result = engine.generate_metadata("rule_based", config)
+        
+        if result.success:
+            click.echo("✅ Directory metadata generation complete")
+            if result.files_created:
+                click.echo(f"Created {len(result.files_created)} new metadata files")
+            if result.files_updated:
+                click.echo(f"Updated {len(result.files_updated)} existing metadata files")
+        else:
+            click.echo(f"❌ Metadata generation failed: {', '.join(result.errors)}", err=True)
+            sys.exit(1)
+            
+    except Exception as e:
+        click.echo(f"Metadata generation failed: {str(e)}", err=True)
+        sys.exit(1)
 
 
 @cli.command("install-workflows")
@@ -202,17 +263,42 @@ def install_workflows(path: str):
 @click.option("--path", "-p", default=".", help="Path to repository root")
 def bootstrap(type: str, path: str):
     """Bootstrap complete CIP automation for a repository."""
-    automation = CIPAutomation(path)
-    report = automation.bootstrap_repository(type)
-    
-    click.echo(f"\n🎉 Repository bootstrapped successfully!")
-    click.echo(f"Compliance Score: {report.score:.1%}")
-    
-    if not report.is_compliant:
-        click.echo("\n⚠️  Some issues need attention:")
-        for issue in report.issues:
-            if issue.level == "error":
-                click.echo(f"❌ {issue.message}")
+    try:
+        # Map CLI type to ProjectType enum
+        type_mapping = {
+            "theory": ProjectType.THEORY,
+            "sdk": ProjectType.SDK,
+            "devkit": ProjectType.DEVKIT,
+            "models": ProjectType.MODELS,
+            "protocol": ProjectType.PROTOCOL,
+            "infrastructure": ProjectType.INFRASTRUCTURE
+        }
+        
+        project_type = type_mapping.get(type, ProjectType.THEORY)
+        
+        # Initialize repository
+        engine = CIPEngine(repo_path=path)
+        init_config = InitConfig(project_type=project_type)
+        init_result = engine.initialize_repository(init_config)
+        
+        # Generate metadata and instructions
+        generation_config = GenerationConfig(strategy="rule_based", force_overwrite=False)
+        metadata_result = engine.generate_metadata("rule_based", generation_config)
+        
+        # Validate the repository
+        validation_result = engine.validate_repository()
+        
+        click.echo(f"\n🎉 Repository bootstrapped successfully!")
+        click.echo(f"Compliance Score: {validation_result.score:.1%}")
+        
+        if not validation_result.is_compliant:
+            click.echo("\n⚠️  Some issues need attention:")
+            for issue in validation_result.issues[:5]:  # Show first 5 issues
+                click.echo(f"❌ {issue}")
+                
+    except Exception as e:
+        click.echo(f"Bootstrap failed: {str(e)}", err=True)
+        sys.exit(1)
 
 
 @cli.command("resolve")
@@ -451,11 +537,26 @@ def ai_metadata(model: str, force: bool, path: str):
     try:
         click.echo(f"🤖 Generating AI-enhanced metadata with {model}...")
         
-        generator = AIEnhancedDirectoryMetadataGenerator(path, model)
-        generator.process_repository(force=force)
+        # Initialize CIP engine
+        engine = CIPEngine(repo_path=path)
         
-        click.echo("✅ AI-enhanced metadata generation complete!")
-        click.echo("🎯 Run 'cip generate-instructions' to create AI guidance files!")
+        # Configure for AI-enhanced generation
+        from ..engine.config import GenerationConfig
+        ai_config = GenerationConfig(
+            strategy='ai_enhanced',
+            ai_model=model,
+            force_overwrite=force
+        )
+        
+        # Generate metadata using unified engine
+        result = engine.generate_metadata('ai_enhanced', ai_config)
+        
+        if result.success:
+            click.echo("✅ AI-enhanced metadata generation complete!")
+            click.echo("🎯 Run 'cip generate-instructions' to create AI guidance files!")
+        else:
+            click.echo(f"❌ Metadata generation failed: {', '.join(result.errors)}")
+            sys.exit(1)
         
     except Exception as e:
         click.echo(f"❌ Error: {str(e)}", err=True)
@@ -467,9 +568,29 @@ def ai_metadata(model: str, force: bool, path: str):
 @click.option("--path", "-p", default=".", help="Path to repository root")
 def generate_metadata(force: bool, path: str):
     """Generate directory-level meta.yaml files automatically (rule-based)."""
-    generator = DirectoryMetadataGenerator(path)
-    generator.process_repository(force=force)
-    click.echo("✅ Directory metadata generation complete")
+    try:
+        # Initialize CIP engine
+        engine = CIPEngine(repo_path=path)
+        
+        # Configure for rule-based generation
+        from ..engine.config import GenerationConfig
+        gen_config = GenerationConfig(
+            strategy='rule_based',
+            force_overwrite=force
+        )
+        
+        # Generate metadata using unified engine
+        result = engine.generate_metadata('rule_based', gen_config)
+        
+        if result.success:
+            click.echo("✅ Directory metadata generation complete")
+        else:
+            click.echo(f"❌ Metadata generation failed: {', '.join(result.errors)}")
+            sys.exit(1)
+            
+    except Exception as e:
+        click.echo(f"❌ Error: {str(e)}", err=True)
+        sys.exit(1)
 
 
 @vm.command("install-workflow")

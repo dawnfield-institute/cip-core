@@ -1,0 +1,19 @@
+schema_version: '2.0'
+directory_name: scripts
+description: The scripts directory contains utility tools and scripts for automation.
+  It provides helpful automation, build tools, and administrative scripts for development
+  and maintenance.
+semantic_scope:
+- automation
+- scripts
+files:
+- initialization.md
+- README.md
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .md: 2
+    .yaml: 1

@@ -1,26 +1,40 @@
 schema_version: '2.0'
-directory_name: ''
-description: This directory structure appears to be the root of a Python package with
-  additional files and subdirectories. The package appears to have a well-defined
-  structure with clear file types and directory naming conventions. The notable files
-  that indicate purpose include the README.md, requirements.txt, and setup.py files.
+directory_name: cip-core
+description: The cip-core directory contains test modules and testing utilities for
+  the cognition_index functionality. It includes unit tests, integration tests, and
+  test fixtures to ensure code quality and reliability.
 semantic_scope:
-- python package
-- development tooling
-- documentation
-- roadmap
-- tests.
+- cognition_index
+- cip_protocol
+- core
 files:
+- .gitignore
 - CIP_CORE_DESIGN_DOCUMENT.md
 - LICENSE
+- pytest.ini
 - README.md
 - requirements.txt
 - setup.py
 child_directories:
+- .cip
 - cip_core
-- cip_core.egg-info
 - docs
 - roadmap
 - templates
 - tests
 - todo
+title: cip-core
+repository_role: protocol
+ecosystem_links:
+  theory: repo://dawn-field-theory/foundational/
+  sdk: repo://fracton-sdk/
+generation_context:
+  generator: ai_enhanced
+  file_count: 8
+  directory_count: 7
+  primary_file_types:
+    .md: 2
+    .yaml: 1
+    .ini: 1
+    .txt: 1
+    .py: 1

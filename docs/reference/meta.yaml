@@ -1,0 +1,18 @@
+schema_version: '2.0'
+directory_name: reference
+description: The reference directory provides technical reference documentation including
+  schema definitions, validation rules, file formats, and quick lookup tables. It
+  serves as the authoritative source for CIP specifications, configuration options,
+  and implementation details.
+semantic_scope:
+- reference
+files:
+- README.md
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1
+    .md: 1

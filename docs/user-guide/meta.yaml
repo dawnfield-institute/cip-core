@@ -1,0 +1,20 @@
+schema_version: '2.0'
+directory_name: user-guide
+description: The user-guide directory contains comprehensive user documentation covering
+  daily usage of CIP from installation to advanced configuration. It includes getting
+  started guides, CLI reference, configuration options, and troubleshooting resources
+  for developers and teams.
+semantic_scope:
+- guide
+- user
+files:
+- README.md
+- troubleshooting.md
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .yaml: 1
+    .md: 2

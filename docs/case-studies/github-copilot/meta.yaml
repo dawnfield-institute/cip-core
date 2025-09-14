@@ -1,0 +1,19 @@
+schema_version: '2.0'
+directory_name: github-copilot
+description: The github-copilot directory contains documentation and reference materials
+  for copilot. It includes explanatory documents that help users understand and work
+  with this component.
+semantic_scope:
+- copilot
+- collaboration
+- version_control
+files:
+- integration.md
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 0
+  primary_file_types:
+    .md: 1
+    .yaml: 1

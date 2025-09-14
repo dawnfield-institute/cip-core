@@ -1,14 +1,18 @@
 schema_version: '2.0'
 directory_name: instructions
-description: This directory provides implementation and utility code for generating
-  AI-readable instructions and guidance files following the Cognition Index Protocol
-  specifications.
+description: The instructions directory is a Python package containing instructions
+  modules and functionality. It provides a structured collection of related code organized
+  for easy import and use.
 semantic_scope:
-- functionality
-- key_classes_functions
-- dependencies
-- usage_patterns
+- instructions
 files:
 - __init__.py
-child_directories:
-- __pycache__
+- generator.py
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .py: 2
+    .yaml: 1

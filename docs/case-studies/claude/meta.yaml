@@ -1,0 +1,18 @@
+schema_version: '2.0'
+directory_name: claude
+description: The claude directory contains user guides and tutorials for claude. It
+  includes step-by-step instructions, examples, and educational materials for users
+  and developers.
+semantic_scope:
+- claude
+files:
+- implementation.md
+- reproduction-guide.md
+child_directories: []
+generation_context:
+  generator: ai_enhanced
+  file_count: 3
+  directory_count: 0
+  primary_file_types:
+    .md: 2
+    .yaml: 1

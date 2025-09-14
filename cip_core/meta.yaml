@@ -1,25 +1,34 @@
 schema_version: '2.0'
 directory_name: cip_core
-description: The cip_core directory contains the core components of the CIP system.
-  It includes various files and subdirectories that work together to provide the necessary
-  functionality for the system.
+description: The cip_core directory is a Python package containing cognition_index
+  modules and functionality. It provides a structured collection of related code organized
+  for easy import and use.
 semantic_scope:
-- python package
-- system administration
-- automation
-- workflows.
+- cognition_index
+- cip_protocol
+- core
 files:
 - __init__.py
 - placeholders.py
 - workflows.py
 child_directories:
-- __pycache__
 - automation
 - cli
+- engine
+- generation
+- instruction
 - instructions
 - navigation
 - ollama_local
 - schemas
 - utils
+- validation
 - validators
 - vm
+generation_context:
+  generator: ai_enhanced
+  file_count: 4
+  directory_count: 13
+  primary_file_types:
+    .py: 3
+    .yaml: 1

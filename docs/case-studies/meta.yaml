@@ -1,0 +1,22 @@
+schema_version: '2.0'
+directory_name: case-studies
+description: The case-studies directory contains comprehensive case studies demonstrating
+  real-world CIP implementations. It includes detailed technical analyses of AI assistant
+  integrations, performance benchmarks, and practical success stories from various
+  environments including Claude, GitHub Copilot, and community implementations.
+semantic_scope:
+- case
+- studies
+files:
+- README.md
+child_directories:
+- claude
+- community
+- github-copilot
+generation_context:
+  generator: ai_enhanced
+  file_count: 2
+  directory_count: 3
+  primary_file_types:
+    .yaml: 1
+    .md: 1
