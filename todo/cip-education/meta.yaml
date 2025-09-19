@@ -1,0 +1,28 @@
+schema_version: '2.0'
+directory_name: cip-education
+description: Comprehensive design documents and specifications for the CIP Education Core platform - a modular, AI-driven learning ecosystem that packages knowledge into pip-installable modules with agent-agnostic protocols.
+semantic_scope:
+- education_platform
+- knowledge_modules
+- ai_tutoring_protocols
+- learning_analytics
+- educational_technology
+- curriculum_design
+files:
+- README.md
+- protocol_specification.md
+- platform_architecture.md
+- implementation_roadmap.md
+- business_strategy.md
+child_directories:
+- specifications
+- prototypes
+- research
+proficiency_level: advanced
+estimated_context_weight: high
+validation_type: design_documentation
+ai_analysis:
+  strategic_importance: "Revolutionary educational technology platform with potential for massive impact"
+  technical_complexity: "Advanced protocol design with multi-AI agent integration and learning analytics"
+  research_integration: "Direct connection to Dawn Field research through knowledge module content"
+  market_opportunity: "Large educational technology market with unique protocol-first approach"
