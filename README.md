@@ -9,11 +9,6 @@
 
 ---
 
-> **📢 Project Status Update (October 2025)**  
-> Due to increased work commitments over the next 2 months, all roadmaps are temporarily paused. The project is **not frozen**—work continues behind the scenes—but updates and documentation will be delayed. Expected to resume regular updates in December 2025. Thank you for your patience and continued interest.
-
----
-
 ## 🎯 Overview
 
 CIP-Core is the foundational implementation of the **Cognition Index Protocol (CIP)**, providing AI-enhanced automation for repository management, validation, and cross-ecosystem navigation. Originally designed for the Dawn Field Theory ecosystem, CIP-Core enables reproducible scientific computing through intelligent metadata generation and protocol-driven validation.
