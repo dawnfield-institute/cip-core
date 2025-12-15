@@ -1,0 +1,40 @@
+# Amplifier Configuration
+# Copy to your research repository as amplifier.yaml
+
+# Knowledge graph location
+knowledge_graph:
+  path: "cip/"                    # Relative to repo root
+  
+# Platform configuration
+platforms:
+  twitter:
+    enabled: true
+    max_daily_posts: 2
+  linkedin:
+    enabled: true
+    max_daily_posts: 1
+
+# Agent configuration
+agents:
+  model: "claude-sonnet-4-20250514"
+  max_iterations: 3               # Max critique loops
+  
+  # Voice tuning
+  voice:
+    technical_depth: 7            # 1-10, higher = more technical
+    humor_enabled: false          # Add personality/humor
+    formality: "casual_professional"  # formal, casual_professional, casual
+  
+# GitHub PR workflow
+workflow:
+  enabled: true
+  pr_repo: ""                     # Leave empty to use same repo
+  auto_merge: false               # Require human approval
+  labels:
+    - "social-media"
+    - "auto-generated"
+
+# Monitoring
+monitoring:
+  log_level: "INFO"
+  track_engagement: true

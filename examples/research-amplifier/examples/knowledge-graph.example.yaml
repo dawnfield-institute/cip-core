@@ -1,0 +1,70 @@
+# Example Knowledge Graph
+# Place in your repo at: cip/knowledge-graph.yaml
+
+metadata:
+  schema_version: "2.0.0"
+  project: "my-research-project"
+  description: "Knowledge graph for research communication"
+  updated: "2024-12-11T00:00:00Z"
+
+concepts:
+  core_theory:
+    id: "core_theory"
+    type: "foundational"
+    status: "active"
+    definition: "The central theoretical framework of the research"
+    files:
+      - path: "concepts/core-theory.md"
+        type: "overview"
+    tags:
+      - "core"
+      - "theory"
+    relates_to:
+      - "validation_work"
+      - "applications"
+
+  validation_work:
+    id: "validation_work"
+    type: "experimental"
+    status: "active"
+    definition: "Experimental validation of theoretical predictions"
+    significance: "HIGH"
+    files:
+      - path: "concepts/validation.md"
+        type: "overview"
+    tags:
+      - "validation"
+      - "experiments"
+    relates_to:
+      - "core_theory"
+
+  applications:
+    id: "applications"
+    type: "experimental"
+    status: "draft"
+    definition: "Practical applications of the theory"
+    files:
+      - path: "concepts/applications.md"
+        type: "overview"
+    tags:
+      - "applications"
+      - "practical"
+    relates_to:
+      - "core_theory"
+
+relationships:
+  - source: "validation_work"
+    target: "core_theory"
+    type: "validates"
+    strength: 1.0
+    description: "Experimental work validates theoretical predictions"
+
+  - source: "applications"
+    target: "core_theory"
+    type: "implements"
+    strength: 0.7
+    description: "Applications implement core theory"
+
+graph_stats:
+  total_concepts: 3
+  total_relationships: 2

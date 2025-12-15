@@ -1,0 +1,41 @@
+# CIP Server Configuration
+#
+# Copy to config/server.yaml and customize
+
+# Server settings
+host: "0.0.0.0"
+port: 8420
+debug: false
+
+# Storage backends
+storage:
+  # Graph: "sqlite" (simple) or "neo4j" (production)
+  graph_backend: "sqlite"
+  graph_uri: "cip_graph.db"
+  
+  # Vector: "chromadb" (simple) or "qdrant" (production)
+  vector_backend: "chromadb"
+  vector_uri: "./kronos_vectors"
+  
+  # Embedding model (sentence-transformers)
+  embedding_model: "all-MiniLM-L6-v2"
+
+# LLM for generation/scoring
+llm:
+  # Provider: "ollama" (local) or "openai"
+  provider: "ollama"
+  model: "llama3.2"
+  base_url: "http://localhost:11434"
+  # api_key: null  # Set via OPENAI_API_KEY env var
+
+# Webhooks
+webhook:
+  enabled: true
+  # github_secret: null  # Set via GITHUB_WEBHOOK_SECRET env var
+  # gitlab_token: null   # Set via GITLAB_WEBHOOK_TOKEN env var
+
+# Repositories to index
+repos: []
+#  - name: "cip-core"
+#    path: "/path/to/cip-core"
+#    remote: "https://github.com/dawn-field-institute/cip-core"

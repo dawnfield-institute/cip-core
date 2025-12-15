@@ -1,0 +1,40 @@
+# Repository Configuration
+#
+# Define repositories to index
+
+repositories:
+  # Example: CIP Core itself
+  - name: "cip-core"
+    path: "../"  # Relative to config dir
+    remote: "https://github.com/dawn-field-institute/cip-core"
+    branch: "main"
+    
+    # Indexing settings
+    include:
+      - "**/*.py"
+      - "**/*.md"
+      - "**/meta.yaml"
+    
+    exclude:
+      - "**/__pycache__/**"
+      - "**/node_modules/**"
+      - "**/.git/**"
+      - "**/venv/**"
+      - "**/*.egg-info/**"
+
+# Default settings for all repos
+defaults:
+  include:
+    - "**/*.py"
+    - "**/*.js"
+    - "**/*.ts"
+    - "**/*.md"
+    - "**/meta.yaml"
+  
+  exclude:
+    - "**/node_modules/**"
+    - "**/__pycache__/**"
+    - "**/.git/**"
+    - "**/venv/**"
+    - "**/dist/**"
+    - "**/build/**"

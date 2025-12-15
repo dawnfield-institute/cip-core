@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "research-amplifier"
+version = "0.1.0"
+description = "AI-powered social media automation for research communication"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Peter Groom", email = "peter@dawnfield.org" }
+]
+keywords = [
+    "research",
+    "social-media",
+    "automation",
+    "ai",
+    "cip",
+    "agents"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Communications",
+]
+
+dependencies = [
+    "anthropic>=0.18.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+    "rich>=13.0",
+    "typer>=0.9.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+platforms = [
+    "tweepy>=4.14",
+    "linkedin-api>=2.0",
+]
+embeddings = [
+    "chromadb>=0.4",
+    "openai>=1.0",
+]
+
+[project.scripts]
+amplify = "research_amplifier.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/dawnfield-institute/research-amplifier"
+Documentation = "https://github.com/dawnfield-institute/research-amplifier/docs"
+Repository = "https://github.com/dawnfield-institute/research-amplifier"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/research_amplifier"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
