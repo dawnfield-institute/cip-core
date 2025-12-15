@@ -1,0 +1,21 @@
+# CIP Server Requirements
+# Install with: pip install -r requirements.txt
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# Kronos dependencies (minimal mode)
+sentence-transformers>=2.2.2
+chromadb>=0.4.15
+pyyaml>=6.0
+
+# CIP Core
+-e ../  # Install cip-core in editable mode
+
+# Testing
+httpx>=0.25.0
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
