@@ -6,7 +6,7 @@ from typing import Optional
 import yaml
 import logging
 
-from services.validation import ValidationService
+from ..services.validation import ValidationService
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

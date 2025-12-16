@@ -22,6 +22,7 @@ try:
     from .services import (
         KnowledgeGraphService,
         ValidationService,
+        GenerationService,
         NavigationService,
         IndexingService,
     )
@@ -33,6 +34,7 @@ except ImportError:
     from services import (
         KnowledgeGraphService,
         ValidationService,
+        GenerationService,
         NavigationService,
         IndexingService,
     )
@@ -76,6 +78,7 @@ async def lifespan(app: FastAPI):
     app.state.services = {}
     app.state.services['graph'] = KnowledgeGraphService(storage)
     app.state.services['validation'] = ValidationService()
+    app.state.services['generation'] = GenerationService(config.llm)
     app.state.services['navigation'] = NavigationService(repo_paths={})
     app.state.services['indexing'] = IndexingService(graph_service=app.state.services['graph'], storage=storage)
     
@@ -132,6 +135,7 @@ async def health_check():
         "services": {
             "graph": "ready",
             "validation": "ready",
+            "generation": "ready",
             "navigation": "ready",
             "indexing": "ready",
         }
