@@ -194,3 +194,7 @@ local_config.py
 .cip/temp/
 .cip/cache/
 temp_*/
+
+# Large database files
+server/data/chromadb/
+*.sqlite3
