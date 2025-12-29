@@ -6,11 +6,18 @@ applyTo: '**'
 ## Core Principle
 **Specification-Driven Development**: Follow existing specs, propose updates when deviating.
 
+## Session Documentation
+
+**NEVER create summary markdown files.** Instead, create changelog entries.
+
+See: [changelog.instructions.md](changelog.instructions.md)
+
 ## Instruction Modules
 Load the relevant module based on task context. These are located in the same directory.
 
 | Module | When to Load |
 |--------|--------------|
+| [changelog.instructions.md](changelog.instructions.md) | **Always** - session documentation |
 | [cip-navigation.instructions.md](cip-navigation.instructions.md) | Repos with `.cip/` directory |
 | [spec-driven-development.instructions.md](spec-driven-development.instructions.md) | Repos with `.spec/` directory |
 | [zenodo-workflow.instructions.md](zenodo-workflow.instructions.md) | Zenodo uploads, DOI management |

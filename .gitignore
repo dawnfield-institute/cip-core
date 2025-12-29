@@ -198,3 +198,6 @@ temp_*/
 # Large database files
 server/data/chromadb/
 *.sqlite3
+
+# Claude local settings
+.claude/

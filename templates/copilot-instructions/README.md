@@ -6,8 +6,7 @@ Modular instruction files for GitHub Copilot. Copy these to your repo's `.github
 
 | File | Purpose | When to Use |
 |------|---------|-------------|
-| `main.instructions.md` | **Gateway** - Core principles + links | Always (main file) |
-| `cip-navigation.instructions.md` | CIP protocol navigation | Repos with `.cip/` |
+| `main.instructions.md` | **Gateway** - Core principles + links | Always (main file) || `changelog.instructions.md` | Session documentation, changelog entries | Always || `cip-navigation.instructions.md` | CIP protocol navigation | Repos with `.cip/` |
 | `spec-driven-development.instructions.md` | Spec-driven workflow | Repos with `.spec/` |
 | `zenodo-workflow.instructions.md` | Zenodo upload process | Publishing to Zenodo |
 | `experiment-schema.instructions.md` | Experiments, POCs, journals | Research repos |
@@ -26,6 +25,7 @@ Copy all files for comprehensive coverage:
 ```
 .github/instructions/
 ├── main.instructions.md
+├── changelog.instructions.md
 ├── cip-navigation.instructions.md
 ├── spec-driven-development.instructions.md
 ├── zenodo-workflow.instructions.md
