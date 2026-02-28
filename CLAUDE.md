@@ -1,80 +1,44 @@
-# CIP-Core -- Claude Code Context
+# CIP-Core -- ARCHIVED
 
-## Identity
-CIP-Core is the foundational implementation of the Cognition Index Protocol (CIP) -- AI-enhanced repository automation for scientific computing. Provides intelligent metadata generation (via Ollama), schema validation, cross-repository navigation with `repo://` URLs, and a CLI toolkit. Version 0.1.0-dev, MIT licensed. Part of the Dawn Field Theory ecosystem.
+> **Status**: Archived as of 2026-02-27. Useful functionality absorbed into Kronos MCP and GRIM skills.
 
-## Architecture
+## What Was Absorbed
+
+- **meta.yaml schema** → `kronos_navigate` MCP tool reads meta.yaml from any directory
+- **Directory navigation** → `repo-navigate` GRIM skill replaces CIP navigation instructions
+- **Directory scanning** → `kronos_search` indexes meta.yaml descriptions in BM25
+- **Source context enrichment** → `kronos_deep_dive` enriches source_paths with meta.yaml metadata
+
+## What Died
+
+- CIP CLI (`cip init`, `cip validate`, `cip bootstrap`, etc.)
+- Ollama integration for metadata generation
+- Compliance scoring system
+- `repo://` URL scheme (never adopted)
+- `.cip/instructions_v2.0.yaml` parsing (replaced by CLAUDE.md)
+- `.cip/core.yaml` orientation index (replaced by `kronos_navigate`)
+- Server/REST API component
+
+## What Remains Useful
+
+- The 1,500+ `meta.yaml` files generated across the workspace — now consumed by Kronos MCP
+- `CIP_Arithmetic_Guide` continues to use `.cip/curriculum.yaml` for its own purposes (unaffected)
+- The meta.yaml schema v2.0 format (description, semantic_scope, files, child_directories) is the standard
+
+## Original Architecture
 
 ```
 cip-core/
 ├── cip_core/                # Core Python package
-│   ├── cli/                 # Command-line interface (cip command)
+│   ├── cli/                 # Command-line interface
 │   ├── schemas/             # YAML schema validation
 │   ├── validators/          # Compliance checking
 │   ├── automation/          # AI-enhanced metadata generation
 │   ├── navigation/          # Cross-repository linking (repo:// URLs)
-│   ├── instructions/        # AI instruction generation
 │   ├── ollama_local/        # Local Ollama AI integration
 │   ├── engine/              # Core CIP engine
-│   ├── generation/          # Metadata generation
-│   ├── validation/          # Validation logic
-│   ├── vm/                  # Cloud VM service integration
-│   └── utils/               # Common utilities
-├── kronos/                  # KRONOS sub-package
-│   ├── kronos/              # Knowledge graph operations
-│   └── tests/               # KRONOS tests
+│   └── ...
 ├── server/                  # CIP server (REST API)
-│   ├── api/                 # API endpoints
-│   ├── services/            # Business logic
-│   ├── parsers/             # Input parsers
-│   ├── webhook/             # Webhook handlers
-│   └── config.py            # Server configuration
-├── tests/                   # Test suite (validators, schemas, CLI, etc.)
-├── config/                  # Configuration files
-├── templates/               # CIP configuration templates
-├── docs/                    # Documentation (architecture, technical, GPT guides)
-├── roadmap/                 # Development planning
-└── .cip/                    # CIP protocol self-configuration (meta.yaml, core.yaml)
+├── tests/                   # Test suite
+└── .cip/                    # CIP protocol self-configuration
 ```
-
-## Key APIs / CLI
-
-**CLI Commands**: `cip init`, `cip validate`, `cip bootstrap`, `cip ai-metadata`, `cip ai-enhance`, `cip generate-instructions`, `cip resolve`, `cip list-repos`, `cip validate-links`
-**Core Modules**: Schema validation, compliance checking, AI metadata generation, repo:// URL resolution
-**Server**: REST API for CIP operations, webhook handlers, parser services
-**KRONOS**: Knowledge graph sub-package for graph operations
-
-## Conventions
-
-- Install: `pip install -e .` (provides the `cip` CLI command)
-- Alternative: `python -m cip_core.cli.main` without installation
-- Tests: `pytest tests/` from repo root
-- CIP metadata lives in `.cip/` directory (meta.yaml, core.yaml)
-- AI features require local Ollama instance running
-- Server: `python server/main.py`
-
-## Related Repos
-
-- `fracton` -- Infodynamics SDK (computational substrate)
-- `dawn-field-theory` -- core theoretical foundation
-- `reality-engine` -- physics simulation framework
-- `dawn-models` -- AI model architectures
-- `kronos-vault` -- knowledge vault (CIP manages its metadata)
-- `dawn-devkit` -- development tools and templates
-
-## Current State
-
-- v0.1.0-dev, active development
-- CLI operational: init, validate, bootstrap, ai-metadata all working
-- Ollama AI integration functional for metadata generation
-- Server component under development
-- KRONOS sub-package included for knowledge graph operations
-
-## Guardrails
-
-- Do NOT break the CLI public interface (cip command and its subcommands)
-- Do NOT modify .cip/ schema format without updating validators and schemas
-- Always run `pytest tests/` after changes
-- AI metadata features depend on Ollama -- handle gracefully when unavailable
-- Server and cip_core are separate concerns -- keep boundaries clean
-- MIT licensed -- ensure all contributions are MIT-compatible
